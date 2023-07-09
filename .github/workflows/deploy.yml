@@ -10,6 +10,8 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: load and cache dependencies
+        with:
+          caching: true
         uses: ./.github/actions/cached-deps
       - name: Lint code
         run: npm run lint
