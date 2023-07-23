@@ -11,6 +11,8 @@ inputs:
   dist-folder:
     description: 'the folder containing the deployable files'
     required: true
+outputs:
+  website-url: url of deployed action
 runs: 
   using: 'node16'
   main: 'main.js'
