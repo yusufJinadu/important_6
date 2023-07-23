@@ -13,7 +13,7 @@ inputs:
     required: true
 outputs:
   website-url: 
-    dwscription: url of deployed action
+    description: url of deployed action
 runs: 
   using: 'node16'
   main: 'main.js'
