@@ -1,0 +1,19 @@
+name: "Deploy to aws S3"
+description: 'Deploy to aws'
+inputs:
+  bucket:
+    description: "The S3 bucket name"
+    required: true
+  bucket-region:
+    description: "bucket region"
+    required: false
+    default: 'us-west-2'
+  dist-folder:
+    description: 'the folder containing the deployable files'
+    required: true
+outputs:
+  website-url: 
+    description: url of deployed action
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
