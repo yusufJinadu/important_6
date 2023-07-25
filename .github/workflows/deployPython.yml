@@ -65,14 +65,15 @@ jobs:
           path: ./dist
       - name: Output contents
         run: ls
-      - name: Deploy site
-        id: deploy
-        uses: ./.github/actions/deploy-s3-docker
       - name: get aws permissions
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::169368121725:role/githubdemo1
           aws-region: eu-north-1
+      - name: Deploy site
+          id: deploy
+          uses: ./.github/actions/deploy-s3-docker
+        with:
           bucket: gh-security-12
           dist-folder: ./dist
       - name: Output Information
