@@ -50,6 +50,9 @@ jobs:
           name: dist-files
           path: dist
   deploy:
+    permissions:
+      id-token: write
+      contents: read
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -65,11 +68,13 @@ jobs:
       - name: Deploy site
         id: deploy
         uses: ./.github/actions/deploy-s3-docker
-        env:
-           AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
-           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      - name: get aws permissions
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          bucket: yji94-trivia-app-bucket
+          role-to-assume: arn:aws:iam::169368121725:role/githubdemo1
+          aws-region: eu-north-1
+        with:
+          bucket: gh-security-12
           dist-folder: ./dist
       - name: Output Information
         run: |
